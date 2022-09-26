@@ -20,14 +20,36 @@ const db = mysql.createConnection(
   );
 
 function menu () {
-    inquirer.prompt(
-        {
+    inquirer.prompt({
             type: 'list',
             name: 'pick',
             message: 'Select One',
-            choices: ['view departments', 'view roles', 'view employees', 'add a department', 'add an employee', 'update an employee role']
-        }
+            choices: ['view departments', 'view roles', 'view employees', 'add a department', 'add an employee', 'update an employee role', 'exit']
+        })
 
-    )
+        switch(menu.pick) {
+            case 'view departments':
+                viewDepts();
+                break;
+            case 'view roles':
+                viewRoles();
+                break;
+            case 'view employees':
+                viewEmployees();
+                break;
+            case 'add a department':
+                addDept();
+                break;
+            case 'add an employee':
+                addEmployee();
+                break;
+            case 'updateEmployee':
+                updateEmployee();
+                break;
+            case 'exit':
+                break;
+             }
 
-}
+
+} 
+menu();
