@@ -24,7 +24,7 @@ function menu () {
             type: 'list',
             name: 'pick',
             message: 'Select One',
-            choices: ['view departments', 'view roles', 'view employees', 'add a department', 'add an employee', 'update an employee role', 'exit']
+            choices: ['view departments', 'view roles', 'view employees', 'add a department', 'add an employee', 'add a role', 'update an employee role', 'exit']
         })
 
         switch(menu.pick) {
@@ -41,6 +41,7 @@ function menu () {
                 addDept();
                 break;
             case 'add an employee':
+                db.query('SELECT * FROM department')
                 addEmployee();
                 break;
             case 'updateEmployee':
@@ -50,4 +51,22 @@ function menu () {
                 break;
              }
 } 
+ function viewDepts(){
+
+ }
+ function viewRoles(){
+
+ }
+ function viewEmployees() {
+
+ }
+ function addDept() {
+
+ }
+ function addEmployee() {
+
+ }
+ function updateEmployee(){
+
+ }
 menu();
