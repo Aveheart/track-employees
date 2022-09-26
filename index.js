@@ -49,7 +49,5 @@ function menu () {
             case 'exit':
                 break;
              }
-
-
 } 
 menu();
