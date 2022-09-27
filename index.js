@@ -69,6 +69,15 @@ function viewRoles() {
         console.table('\n', res,);
         begin();
     })
+};
+
+function viewEmployees() {
+    console.log("now viewing all employees");
+    db.query('SELECT * FROM employee', (err, res) => {
+        if (err) throw err;
+        console.table('\n', res,);
+        begin();
+    })
 }
 
 
