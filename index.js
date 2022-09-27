@@ -9,19 +9,6 @@ const db = require('./db/connection');
 // switch statement depending on choice for view; view of table
 // input for add 
 // choose update, select which employee, and input to update role and updates database
-
-// Connect to database
-// const db = mysql.createConnection(
-//     {
-//         host: 'localhost',
-//         user: 'root',
-//         password: 'Hello@27',
-//         database: 'employees_db'
-//     },
-//     console.log(`Connected to the employees_db database.`)
-// );
-
-// function menu() {
 inquirer.prompt(
     [{
         type: 'list',
@@ -66,10 +53,12 @@ inquirer.prompt(
 
 function viewDepartments() {
     console.log("you made it to view depts");
-    db.query
-
-
-}
+    db.query('SELECT * FROM department', (err, res) => {
+        if(err) throw err;
+        console.table( res, '\n');
+       
+    })
+};
 
 
 
