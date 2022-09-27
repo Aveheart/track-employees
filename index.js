@@ -88,10 +88,16 @@ function addDepartment() {
             name: 'newDept',
             message: 'Which department would you like to add?',
         }
-    ]) 
-    .then(function (answer) {
-        console.log(answer);
-        begin();
+    ]) .then((response) => {
+        db.query(`INSERT INTO department SET ?`, 
+        {
+            name: response.newDept,
+        },
+        (err, res) => {
+            if (err) throw err;
+            console.log(`\n ${response.newDept} successfully added to database! \n`);
+            begin();
+        })
     })
 };
 
