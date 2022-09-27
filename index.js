@@ -101,6 +101,53 @@ function addDepartment() {
     })
 };
 
+function addEmployee() {
+    console.log('adding new employee');
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'nameFirst',
+            message: 'What is employees first name?'
+        },
+        {
+            type: 'input',
+            name: 'nameLast',
+            message: 'What is the last name?'
+        },
+        {
+            type: 'input',
+            name: 'roleId',
+            message: 'What is the role id?'
+        },
+        {
+            type: 'input',
+            name: 'managerId',
+            message: 'What is the id of the employees manager?'
+        }
+    ]) .then((response) => {
+        db.query(`INSERT INTO employee SET ?`, 
+        {
+            first_name: response.nameFirst,
+            last_name: response.nameLast,
+            role_id: response.roleId,
+            manager_id: response.managerId,
+        }, 
+        (err, res) => {
+            if (err) throw err;
+        })
+        db.query(`INSERT INTO role SET ?`, 
+        {
+            department_id: response.dept,
+        }, 
+        (err, res) => {
+            if (err) throw err;
+            console.log(`\n ${response.nameFirst} ${response.nameLast} successfully added to database! \n`);
+            begin();
+        })
+    })
+};
+
+
 function addRole() {
     console.log('adding new role');
     inquirer.prompt([
