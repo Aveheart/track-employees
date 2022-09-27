@@ -181,6 +181,11 @@ function addRole() {
     })
 };
 
+function updateEmpRole() {
+    console.log('now updating employee role')
+    
+}
+
 begin();
 
 
