@@ -62,6 +62,16 @@ function viewDepartments() {
     })
 };
 
+function viewRoles() {
+    console.log("you are now viewing all roles");
+    db.query('SELECT * FROM role', (err, res) => {
+        if (err) throw err;
+        console.table('\n', res,);
+        begin();
+    })
+}
+
+
 begin();
 
 
