@@ -9,12 +9,14 @@ const db = require('./db/connection');
 // switch statement depending on choice for view; view of table
 // input for add 
 // choose update, select which employee, and input to update role and updates database
+begin = () =>{
 inquirer.prompt(
     [{
         type: 'list',
         name: 'pick',
         message: 'Select One',
         choices: ['view departments', 'view roles', 'view employees', 'add a department', 'add an employee', 'add a role', 'update an employee role', 'exit'],
+        loop: false
 
     }]
 
@@ -48,18 +50,19 @@ inquirer.prompt(
         }
     })
 
-
+}
 
 
 function viewDepartments() {
     console.log("you made it to view depts");
     db.query('SELECT * FROM department', (err, res) => {
         if(err) throw err;
-        console.table( res, '\n');
-       
+        console.table( '\n', res,);
+       begin();
     })
 };
 
+begin();
 
 
 

@@ -11,17 +11,6 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// Connect to database
-const db = mysql.createConnection(
-  {
-    host: 'localhost',
-    user: 'root',
-    password: 'Hello@27',
-    database: 'employees_db'
-  },
-  console.log(`Connected to the employees_db database.`)
-);
-
 // Default response for any other request (Not Found)
 app.use((req, res) => {
   res.status(404).end();
