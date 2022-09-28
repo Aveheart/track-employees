@@ -180,11 +180,69 @@ function addRole() {
         })
     })
 };
-
-function updateEmpRole() {
-    console.log('now updating employee role')
-    
+updateEmpRole = () => {
+    db.query(`SELECT * FROM role;`, (err, res) => {
+        if (err) throw err;
+        let roles = res.map(role => ({name: role.title, value: role.role_id }));
+        db.query(`SELECT * FROM employee;`, (err, res) => {
+            if (err) throw err;
+            let employees = res.map(employee => ({name: employee.first_name + ' ' + employee.last_name, value: employee.employee_id }));
+            inquirer.prompt([
+                {
+                    name: 'employee',
+                    type: 'rawlist',
+                    message: 'Which employee would you like to update the role for?',
+                    choices: employees
+                },
+                {
+                    name: 'newRole',
+                    type: 'rawlist',
+                    message: 'What should the employee\'s new role be?',
+                    choices: roles
+                },
+            ]).then((response) => {
+                db.query(`UPDATE employee SET ? WHERE ?`, 
+                [
+                    {
+                        role_id: response.newRole,
+                    },
+                    {
+                        employee_id: response.employee,
+                    },
+                ], 
+                (err, res) => {
+                    if (err) throw err;
+                    console.log(`\n Successfully updated employee's role in the database! \n`);
+                    begin();
+                })
+            })
+        })
+    })
 }
+
+// function updateEmpRole() {
+//     console.log('now updating employee role')
+//     inquirer.prompt([
+//         {
+//             type: "input",
+//             name: 'updateEmp',
+//             message: "Which employee would you like to update?"
+//         },
+//         {
+//             type: 'input',
+//             name: 'updateRole',
+//             message: 'update to which role?'
+//         },
+//     ]) .then((response) => {
+//         db.query('UPDATE employee SET ? WHERE ?',
+//         {
+//             role_id: response.employee,
+
+
+//         }
+//         )
+//     })
+// }
 
 begin();
 
