@@ -183,23 +183,39 @@ function addRole() {
 
 
 function updateEmpRole() {
-    console.log('now updating employee role')
-    db.query('SELECT * FROM employee', (err, res) => {
-        if (err) throw err;
-        console.table('\n', res,);
-        inquirer.prompt([
-            {
-                type: "input",
-                message: "Enter the employee's ID you want to be updated",
-                name: "updateEmploy"
-              },
-              {
-                type: "input",
-                message: "Enter the new role ID for that employee",
-                name: "newRole"
-              }
-            ])
-    })}
+    console.log('now updating employee role');
+    // db.query('SELECT * FROM employee', (err, res) => {
+    //     if (err) throw err;
+    //     console.table('\n', res,);
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "Enter the employee's ID you want to be updated",
+            name: "empId"
+        },
+        {
+            type: "input",
+            message: "Enter the new role ID for that employee",
+            name: "newRole"
+        },
+    ]).then((response) => {
+        db.query('UPDATE employee SET ? Where ?',
+            [
+                {
+                    role_id: response.newRole
+                },
+                {
+                    id: response.empId
+                },
+            ],
+            (err) => {
+                if (err) throw err;
+                console.log('Employee role updated!');
+                begin();
+            })
+    });
+}
+
 
 begin();
 
@@ -208,10 +224,4 @@ begin();
 // UPDATE produce
 // SET name = "strawberry"
 // WHERE id = 1;
-
-
-
-
-
-
 
