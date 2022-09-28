@@ -1,14 +1,8 @@
 const inquirer = require('inquirer');
 const { table } = require('console.table');
 const server = require('./server');
-
 const db = require('./db/connection');
 
-// function to start 
-// function to prompt options: view depts, roles, employees; add dept, role, employee; update employee role
-// switch statement depending on choice for view; view of table
-// input for add 
-// choose update, select which employee, and input to update role and updates database
 begin = () => {
     inquirer.prompt(
         [{
@@ -17,9 +11,7 @@ begin = () => {
             message: 'Select One',
             choices: ['view departments', 'view roles', 'view employees', 'add a department', 'add an employee', 'add a role', 'update an employee role', 'exit'],
             loop: false
-
         }]
-
     )
         .then(function (answer) {
             console.log(answer.pick);
@@ -49,9 +41,7 @@ begin = () => {
                     break;
             }
         })
-
 }
-
 
 function viewDepartments() {
     console.log("you made it to view depts");
@@ -184,9 +174,6 @@ function addRole() {
 
 function updateEmpRole() {
     console.log('now updating employee role');
-    // db.query('SELECT * FROM employee', (err, res) => {
-    //     if (err) throw err;
-    //     console.table('\n', res,);
     inquirer.prompt([
         {
             type: "input",
@@ -215,13 +202,8 @@ function updateEmpRole() {
             })
     });
 }
-
-
 begin();
 
 
-// example
-// UPDATE produce
-// SET name = "strawberry"
-// WHERE id = 1;
+
 
