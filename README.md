@@ -4,7 +4,9 @@
 This Node application is for a user to be able to view and manage departments, roles, and employees in their company so they can organize and plan their business. The user can view and set specific data like salary, manager of employees, and Id's.
 
 ## Usage
-[Untitled_ Sep 28, 2022 8_53 PM.webm](https://user-images.githubusercontent.com/110785267/192914475-0c4c4cca-018f-42cc-89bb-4f303f8f7c59.webm)
+DEMO
+[Demo.webm](https://user-images.githubusercontent.com/110785267/192914631-63fa7291-9ddd-453b-8bcd-a6a0b7172c6b.webm)
+
 ## Installation
 n/a
 
