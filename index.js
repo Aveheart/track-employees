@@ -9,7 +9,7 @@ begin = () => {
             type: 'list',
             name: 'pick',
             message: 'Select One',
-            choices: ['view departments', 'view roles', 'view employees', 'add a department', 'add an employee', 'add a role', 'update an employee role', 'exit'],
+            choices: ['view departments', 'view roles', 'view employees', 'add a department', 'add an employee', 'add a role', 'update an employee role', 'delete department', 'delete role', 'delete employee', 'exit'],
             loop: false
         }]
     )
@@ -36,6 +36,15 @@ begin = () => {
                     break;
                 case "update an employee role":
                     updateEmpRole();
+                    break;
+                case "delete department":
+                    deleteDept();
+                    break;
+                case "delete role":
+                    deleteRole();
+                    break;
+                case "delete employee":
+                    deleteEmployee();
                     break;
                 case "exit":
                     break;
@@ -197,13 +206,71 @@ function updateEmpRole() {
             ],
             (err) => {
                 if (err) throw err;
-                console.log('Employee role updated!');
+                console.log('\n Employee role updated! \n');
                 begin();
             })
     });
+};
+function deleteDept() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'deleteDept',
+            message: 'Enter the department Id that will be deleted?'
+        }
+    ]).then((response) => {
+        db.query('DELETE FROM department WHERE ?',
+            {
+                id: response.deleteDept
+            },
+            (err) => {
+                if (err) throw err;
+                console.log('\n Department deleted! \n');
+                begin();
+            })
+    })
+};
+function deleteRole() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'deleteRole',
+            message: 'Enter Id of role that will be deleted'
+        }
+    ]).then((response) => {
+        db.query('DELETE FROM role WHERE ?',
+            {
+                id: response.deleteRole
+            },
+            (err) => {
+                if (err) throw err;
+                console.log('\n Role deleted! \n');
+                begin();
+            })
+    })
+};
+function deleteEmployee() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'deleteEmp',
+            message: 'Enter the employee Id that will be deleted'
+        }
+    ]).then ((response) => {
+        db.query('DELETE FROM employee WHERE ?',
+        {
+            id: response.deleteEmp
+        },
+        (err) => {
+            if(err) throw err;
+            console.log('\n Employee deleted! \n');
+            begin();
+        })
+    })
 }
 begin();
 
 
-
+// DELETE FROM produce
+// WHERE id = 2;
 
