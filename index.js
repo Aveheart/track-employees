@@ -271,6 +271,3 @@ function deleteEmployee() {
 begin();
 
 
-// DELETE FROM produce
-// WHERE id = 2;
-
