@@ -7,7 +7,6 @@ This Node application is for a user to be able to view and manage departments, r
 DEMO
 [Demo.webm](https://user-images.githubusercontent.com/110785267/192914631-63fa7291-9ddd-453b-8bcd-a6a0b7172c6b.webm)
 
-DEPLOYED SITE
 https://aveheart.github.io/track-employees/
 
 ## Installation
